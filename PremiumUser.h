@@ -6,30 +6,57 @@
 class PremiumUser : public User {
 private:
     int bonusPoints;
+    bool unlimitedMessages;
+    bool prioritySupport;
 
 public:
     PremiumUser(int i = 0, string u = "", string p = "")
-        : User(i, u, p), bonusPoints(0) {}
+        : User(i, u, p), bonusPoints(100), unlimitedMessages(true), prioritySupport(true) {}
 
     void addBonusPoints(int points) {
         bonusPoints += points;
-        cout << points << " bonus points added! Total: " << bonusPoints << endl;
+        cout << " " << points << " bonus points added! Total: " << bonusPoints << " points\n";
     }
-
-    void unlockPremiumFeature() {
-        cout << "🎉 Premium feature unlocked! You can send unlimited messages!\n";
+    
+    int getBonusPoints() const {
+        return bonusPoints;
+    }
+    
+    bool hasUnlimitedMessages() const {
+        return unlimitedMessages;
+    }
+    
+    void showPremiumFeatures() {
+        cout << "\n === PREMIUM FEATURES === \n";
+        cout << " Unlimited Messages\n";
+        cout << " Priority Friend Requests\n";
+        cout << " Bonus Points: " << bonusPoints << "\n";
+        cout << " Advanced Analytics\n";
+        cout << " Custom Profile Themes\n";
+        cout << " Ad-Free Experience\n";
+        cout << "============================\n";
     }
 
     void showDashboard() override {
-        cout << "\n==============================\n";
-        cout << "Welcome Premium User, " << username << "!\n";
-        cout << "==============================\n";
-        cout << "1. View Profile\n";
-        cout << "2. Add Friend\n";
-        cout << "3. View Bonus Points\n";
-        cout << "4. Unlock Premium Feature\n";
-        cout << "5. Logout\n";
-        cout << "==============================\n";
+        cout << "\n ==============================\n";
+        cout << "   Welcome Premium User, " << username << "!\n";
+        cout << "   Bonus Points: " << bonusPoints << " \n";
+        cout << "================================\n";
+    }
+    
+    string getUserType() const override {
+        return "Premium";
+    }
+    
+    // Premium-specific operator overloading
+    PremiumUser& operator+=(int points) {
+        bonusPoints += points;
+        return *this;
+    }
+    
+    PremiumUser& operator-=(int points) {
+        bonusPoints = (bonusPoints >= points) ? (bonusPoints - points) : 0;
+        return *this;
     }
 };
 
