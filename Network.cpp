@@ -43,7 +43,7 @@ string Network::getCurrentTime() {
     time_t now = time(0);
     char* dt = ctime(&now);
     string timeStr(dt);
-    timeStr.pop_back(); // Remove newline
+    timeStr.pop_back(); 
     return timeStr;
 }
 
@@ -732,7 +732,7 @@ void Network::viewActivityLog(User* currentUser) {
     int count = 0;
     
     while (current && count < 15) {
-        cout << "• " << current->activity << "\n";
+        cout << "=> " << current->activity << "\n";
         cout << "   " << current->timestamp << "\n\n";
         current = current->next;
         count++;

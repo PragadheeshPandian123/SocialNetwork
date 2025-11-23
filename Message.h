@@ -5,7 +5,8 @@
 #include <ctime>
 using namespace std;
 
-struct Message {
+class Message {
+    public:
     int senderId;
     int receiverId;
     string senderName;

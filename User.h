@@ -69,7 +69,7 @@ public:
     }
     
     void operator+(const User& other) {
-        cout << "✅ " << username << " and " << other.username << " are now friends!\n";
+        cout << username << " and " << other.username << " are now friends!\n";
     }
     
     bool operator==(const User& other) const {
